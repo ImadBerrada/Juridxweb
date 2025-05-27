@@ -1,0 +1,9 @@
+src/generated/**
+.next/**
+node_modules/**
+dist/**
+build/**
+*.js
+*.d.ts
+!src/**/*.ts
+!src/**/*.tsx 
