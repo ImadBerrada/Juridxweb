@@ -11,9 +11,36 @@ const updateServiceSchema = z.object({
   order: z.number().optional(),
 })
 
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+    const service = await prisma.service.findUnique({
+      where: { id },
+    })
+
+    if (!service) {
+      return NextResponse.json(
+        { error: 'Service non trouvé' },
+        { status: 404 }
+      )
+    }
+
+    return NextResponse.json({ service })
+  } catch (error) {
+    console.error('Service fetch error:', error)
+    return NextResponse.json(
+      { error: 'Erreur interne du serveur' },
+      { status: 500 }
+    )
+  }
+}
+
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = getUserFromRequest(request)
@@ -25,17 +52,18 @@ export async function PUT(
       )
     }
 
+    const { id } = await params;
     const body = await request.json()
     const validatedData = updateServiceSchema.parse(body)
 
-    const updatedService = await prisma.service.update({
-      where: { id: params.id },
+    const service = await prisma.service.update({
+      where: { id },
       data: validatedData,
     })
 
     return NextResponse.json({
       message: 'Service mis à jour avec succès',
-      service: updatedService,
+      service,
     })
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -55,7 +83,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = getUserFromRequest(request)
@@ -67,8 +95,9 @@ export async function DELETE(
       )
     }
 
+    const { id } = await params;
     await prisma.service.delete({
-      where: { id: params.id },
+      where: { id },
     })
 
     return NextResponse.json({

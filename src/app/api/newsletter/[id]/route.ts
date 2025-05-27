@@ -4,9 +4,10 @@ import { getUserFromRequest } from '@/lib/auth'
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = getUserFromRequest(request)
     
     if (!user || user.role !== 'ADMIN') {
@@ -17,7 +18,7 @@ export async function DELETE(
     }
 
     await prisma.newsletter.delete({
-      where: { id: params.id },
+      where: { id: id },
     })
 
     return NextResponse.json({

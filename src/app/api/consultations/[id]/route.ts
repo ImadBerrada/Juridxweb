@@ -18,28 +18,24 @@ const updateConsultationSchema = z.object({
   }),
 })
 
-export async function PATCH(
+export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = getUserFromRequest(request)
     
-    if (!user || user.role !== 'ADMIN') {
+    if (!user) {
       return NextResponse.json(
         { error: 'Accès non autorisé' },
-        { status: 403 }
+        { status: 401 }
       )
     }
 
-    const body = await request.json()
-    const validatedData = updateConsultationSchema.parse(body)
-
-    const updatedConsultation = await prisma.consultation.update({
-      where: { id: params.id },
-      data: validatedData,
+    const { id } = await params;
+    const consultation = await prisma.consultation.findUnique({
+      where: { id },
       include: {
-        service: true,
         client: {
           select: {
             id: true,
@@ -47,22 +43,28 @@ export async function PATCH(
             email: true,
           },
         },
+        service: true,
       },
     })
 
-    return NextResponse.json({
-      message: 'Consultation mise à jour avec succès',
-      consultation: updatedConsultation,
-    })
-  } catch (error) {
-    if (error instanceof z.ZodError) {
+    if (!consultation) {
       return NextResponse.json(
-        { error: 'Données invalides', details: error.errors },
-        { status: 400 }
+        { error: 'Consultation non trouvée' },
+        { status: 404 }
       )
     }
 
-    console.error('Consultation update error:', error)
+    // Check if user can access this consultation
+    if (user.role !== 'ADMIN' && consultation.clientId !== user.userId) {
+      return NextResponse.json(
+        { error: 'Accès non autorisé' },
+        { status: 403 }
+      )
+    }
+
+    return NextResponse.json({ consultation })
+  } catch (error) {
+    console.error('Consultation fetch error:', error)
     return NextResponse.json(
       { error: 'Erreur interne du serveur' },
       { status: 500 }
@@ -72,7 +74,7 @@ export async function PATCH(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = getUserFromRequest(request)
@@ -84,14 +86,14 @@ export async function PUT(
       )
     }
 
+    const { id } = await params;
     const body = await request.json()
     const validatedData = updateConsultationSchema.parse(body)
 
-    const updatedConsultation = await prisma.consultation.update({
-      where: { id: params.id },
+    const consultation = await prisma.consultation.update({
+      where: { id },
       data: validatedData,
       include: {
-        service: true,
         client: {
           select: {
             id: true,
@@ -99,12 +101,13 @@ export async function PUT(
             email: true,
           },
         },
+        service: true,
       },
     })
 
     return NextResponse.json({
       message: 'Consultation mise à jour avec succès',
-      consultation: updatedConsultation,
+      consultation,
     })
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -124,7 +127,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = getUserFromRequest(request)
@@ -136,8 +139,9 @@ export async function DELETE(
       )
     }
 
+    const { id } = await params;
     await prisma.consultation.delete({
-      where: { id: params.id },
+      where: { id },
     })
 
     return NextResponse.json({

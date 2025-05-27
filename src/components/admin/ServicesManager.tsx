@@ -139,9 +139,9 @@ export default function ServicesManager() {
     
     try {
       const response = await servicesApi.update(selectedService.id, formData);
-      if (response.data) {
+      if (response.data?.service) {
         setServices(services.map(service => 
-          service.id === selectedService.id ? response.data.service : service
+          service.id === selectedService.id ? response.data!.service : service
         ));
         setShowEditModal(false);
         setSelectedService(null);

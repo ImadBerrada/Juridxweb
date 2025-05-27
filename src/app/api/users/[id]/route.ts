@@ -6,14 +6,15 @@ import { getUserFromRequest } from '@/lib/auth'
 const updateUserSchema = z.object({
   name: z.string().optional(),
   email: z.string().email().optional(),
-  role: z.enum(['USER', 'ADMIN']).optional(),
+  role: z.enum(['CLIENT', 'ADMIN']).optional(),
 })
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = getUserFromRequest(request)
     
     if (!user || user.role !== 'ADMIN') {
@@ -27,7 +28,7 @@ export async function PATCH(
     const validatedData = updateUserSchema.parse(body)
 
     const updatedUser = await prisma.user.update({
-      where: { id: params.id },
+      where: { id: id },
       data: validatedData,
       select: {
         id: true,
@@ -61,9 +62,10 @@ export async function PATCH(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = getUserFromRequest(request)
     
     if (!user) {
@@ -74,7 +76,7 @@ export async function PUT(
     }
 
     // Allow users to update their own profile or admins to update any profile
-    if (user.userId !== params.id && user.role !== 'ADMIN') {
+    if (user.userId !== id && user.role !== 'ADMIN') {
       return NextResponse.json(
         { error: 'Accès non autorisé' },
         { status: 403 }
@@ -85,7 +87,7 @@ export async function PUT(
     
     // If user is updating their own profile, restrict role changes
     let validatedData;
-    if (user.userId === params.id && user.role !== 'ADMIN') {
+    if (user.userId === id && user.role !== 'ADMIN') {
       const userUpdateSchema = z.object({
         name: z.string().optional(),
         email: z.string().email().optional(),
@@ -96,7 +98,7 @@ export async function PUT(
     }
 
     const updatedUser = await prisma.user.update({
-      where: { id: params.id },
+      where: { id: id },
       data: validatedData,
       select: {
         id: true,
@@ -130,9 +132,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = getUserFromRequest(request)
     
     if (!user || user.role !== 'ADMIN') {
@@ -143,7 +146,7 @@ export async function DELETE(
     }
 
     // Prevent admin from deleting themselves
-    if (user.userId === params.id) {
+    if (user.userId === id) {
       return NextResponse.json(
         { error: 'Vous ne pouvez pas supprimer votre propre compte' },
         { status: 400 }
@@ -151,7 +154,7 @@ export async function DELETE(
     }
 
     await prisma.user.delete({
-      where: { id: params.id },
+      where: { id: id },
     })
 
     return NextResponse.json({

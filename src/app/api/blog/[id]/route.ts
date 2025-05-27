@@ -15,11 +15,12 @@ const updateBlogPostSchema = z.object({
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const post = await prisma.blogPost.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         author: {
           select: {
@@ -56,7 +57,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = getUserFromRequest(request)
@@ -68,6 +69,7 @@ export async function PUT(
       )
     }
 
+    const { id } = await params;
     const body = await request.json()
     const { tags, ...validatedData } = updateBlogPostSchema.parse(body)
 
@@ -76,7 +78,7 @@ export async function PUT(
       const existingPost = await prisma.blogPost.findFirst({
         where: { 
           slug: validatedData.slug,
-          NOT: { id: params.id }
+          NOT: { id }
         },
       })
 
@@ -94,7 +96,7 @@ export async function PUT(
     }
 
     const post = await prisma.blogPost.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData,
       include: {
         author: {
@@ -132,7 +134,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = getUserFromRequest(request)
@@ -144,8 +146,9 @@ export async function DELETE(
       )
     }
 
+    const { id } = await params;
     await prisma.blogPost.delete({
-      where: { id: params.id },
+      where: { id },
     })
 
     return NextResponse.json({

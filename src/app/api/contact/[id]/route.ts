@@ -17,9 +17,10 @@ const updateContactSchema = z.object({
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = getUserFromRequest(request)
     
     if (!user || user.role !== 'ADMIN') {
@@ -33,7 +34,7 @@ export async function PATCH(
     const validatedData = updateContactSchema.parse(body)
 
     const updatedContact = await prisma.contact.update({
-      where: { id: params.id },
+      where: { id: id },
       data: validatedData,
     })
 
@@ -59,9 +60,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const user = getUserFromRequest(request)
     
     if (!user || user.role !== 'ADMIN') {
@@ -72,7 +74,7 @@ export async function DELETE(
     }
 
     await prisma.contact.delete({
-      where: { id: params.id },
+      where: { id: id },
     })
 
     return NextResponse.json({
