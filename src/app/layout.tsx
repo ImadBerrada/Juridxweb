@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
     template: "%s | JuridX"
   },
-  description: "🏆 Cabinet juridique d'excellence internationale dirigé par Abderrahman Adel (diplômé Université de Londres). Solutions juridiques expertes, conseil stratégique personnalisé et accompagnement multi-juridictionnel pour entreprises et investisseurs. Votre succès, notre expertise.",
+  description: "Cabinet juridique d'excellence internationale dirigé par Abderrahman Adel, diplômé de l'Université de Londres. Solutions juridiques expertes, conseil stratégique personnalisé et accompagnement multi-juridictionnel pour entreprises et investisseurs.",
   keywords: [
     "JuridX", "Juridx", "juridx", "JURIDX",
     "Abderrahman Adel", "cabinet juridique", "conseil juridique international", 
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/jk.jpg",
+        url: "/favicon.ico",
         sizes: "any",
       },
       {
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
-    description: "🏆 Cabinet juridique d'excellence internationale dirigé par Abderrahman Adel (diplômé Université de Londres). Solutions juridiques expertes, conseil stratégique personnalisé et accompagnement multi-juridictionnel pour entreprises et investisseurs. Votre succès, notre expertise.",
+    description: "Cabinet juridique d'excellence internationale dirigé par Abderrahman Adel, diplômé de l'Université de Londres. Solutions juridiques expertes, conseil stratégique personnalisé et accompagnement multi-juridictionnel pour entreprises et investisseurs.",
     url: "https://juridx.com",
     siteName: "JuridX",
     locale: "fr_FR",
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
-    description: "🏆 Cabinet juridique d'excellence internationale dirigé par Abderrahman Adel (diplômé Université de Londres). Solutions juridiques expertes, conseil stratégique personnalisé et accompagnement multi-juridictionnel pour entreprises et investisseurs. Votre succès, notre expertise.",
+    description: "Cabinet juridique d'excellence internationale dirigé par Abderrahman Adel, diplômé de l'Université de Londres. Solutions juridiques expertes, conseil stratégique personnalisé et accompagnement multi-juridictionnel pour entreprises et investisseurs.",
     creator: "@juridx",
     site: "@juridx",
     images: ["/jk.jpg"],
@@ -122,9 +122,6 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/jk.jpg" type="image/jpeg" />
-        <link rel="icon" type="image/png" href="/jk.jpg" sizes="32x32" />
         <link rel="apple-touch-icon" href="/jk.jpg" />
         <meta name="msapplication-TileImage" content="/jk.jpg" />
         <meta property="og:image" content="https://juridx.com/jk.jpg" />
