@@ -17,6 +17,28 @@ const nextConfig: NextConfig = {
         destination: 'https://juridx.com/:path*',
         permanent: true,
       },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'juridxweb.vercel.app',
+          },
+        ],
+        destination: 'https://juridx.com/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: '(.*).vercel.app',
+          },
+        ],
+        destination: 'https://juridx.com/:path*',
+        permanent: true,
+      },
     ];
   },
   async headers() {
