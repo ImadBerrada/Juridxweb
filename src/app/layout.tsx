@@ -94,6 +94,15 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/jk.jpg" />
         <meta property="og:image" content="/jk.jpg" />
         <meta name="twitter:image" content="/jk.jpg" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined' && window.location.hostname.includes('vercel.app')) {
+                window.location.replace('https://juridx.com' + window.location.pathname + window.location.search);
+              }
+            `,
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
