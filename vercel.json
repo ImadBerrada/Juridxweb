@@ -10,28 +10,6 @@
       ],
       "destination": "https://juridx.com/$1",
       "permanent": true
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "juridxweb.vercel.app"
-        }
-      ],
-      "destination": "https://juridx.com/$1",
-      "permanent": true
-    },
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "juridxweb-*.vercel.app"
-        }
-      ],
-      "destination": "https://juridx.com/$1",
-      "permanent": true
     }
   ],
   "headers": [
