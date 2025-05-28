@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
     template: "%s | JuridX"
   },
-  description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence en droit des affaires internationales dirigé par Abderrahman Adel, expert diplômé de l'Université de Londres. Structuration juridique, conseil stratégique et accompagnement personnalisé.",
+  description: "Cabinet d'excellence en droit international dirigé par Abderrahman Adel, expert diplômé de l'Université de Londres. Votre partenaire juridique de confiance pour structuration juridique, conseil stratégique et accompagnement personnalisé.",
   keywords: [
     "JuridX", "Juridx", "juridx", "JURIDX",
     "Abderrahman Adel", "cabinet juridique", "conseil juridique international", 
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
-    description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales. Expertise reconnue d'Abderrahman Adel, diplômé de l'Université de Londres.",
+    description: "Cabinet d'excellence en droit international dirigé par Abderrahman Adel. Expertise reconnue, accompagnement personnalisé et solutions juridiques innovantes pour entreprises et investisseurs.",
     url: "https://juridx.com",
     siteName: "JuridX",
     locale: "fr_FR",
@@ -88,7 +88,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
-    description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales. Expertise d'Abderrahman Adel.",
+    description: "Cabinet d'excellence en droit international dirigé par Abderrahman Adel. Expertise reconnue, accompagnement personnalisé et solutions juridiques innovantes.",
     creator: "@juridx",
     site: "@juridx",
     images: ["/jk.jpg"],
