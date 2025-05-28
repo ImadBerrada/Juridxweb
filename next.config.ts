@@ -4,21 +4,6 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'www.juridx.com',
-          },
-        ],
-        destination: 'https://juridx.com/:path*',
-        permanent: true,
-      },
-    ];
-  },
   async headers() {
     return [
       {
