@@ -18,10 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "JuridX | Cabinet de Conseil Juridique International - Abderrahman Adel",
+    default: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
     template: "%s | JuridX"
   },
-  description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales, structuration juridique multi-juridictionnelle et accompagnement stratégique personnalisé. Fondé par Abderrahman Adel, expert diplômé de l'Université de Londres.",
+  description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence en droit des affaires internationales dirigé par Abderrahman Adel, expert diplômé de l'Université de Londres. Structuration juridique, conseil stratégique et accompagnement personnalisé.",
   keywords: [
     "JuridX", "Juridx", "juridx", "JURIDX",
     "Abderrahman Adel", "cabinet juridique", "conseil juridique international", 
