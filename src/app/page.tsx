@@ -40,13 +40,13 @@ export default function Home() {
             >
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
                 JuridX
-                <span className="text-gradient block">Conseil Juridique</span>
-                <span className="text-gradient block">International</span>
+                <span className="text-gradient block">Votre Partenaire</span>
+                <span className="text-gradient block">Juridique de Confiance</span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Cabinet de conseil haut de gamme spécialisé en droit des affaires internationales, 
-                structuration juridique multi-juridictionnelle, et accompagnement stratégique des 
-                entreprises et investisseurs. Fondé par Abderrahman Adel.
+                <strong>Votre partenaire juridique de confiance.</strong> Cabinet d'excellence spécialisé en droit des affaires internationales, 
+                structuration juridique multi-juridictionnelle, et accompagnement stratégique personnalisé des 
+                entreprises et investisseurs. Fondé par Abderrahman Adel, expert diplômé de l'Université de Londres.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/consultation">
@@ -74,8 +74,8 @@ export default function Home() {
                     <div className="text-sm text-muted-foreground">Années d&apos;Expérience</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-gold">3</div>
-                    <div className="text-sm text-muted-foreground">Diplômes Avancés</div>
+                    <div className="text-3xl font-bold text-gold">100%</div>
+                    <div className="text-sm text-muted-foreground">Satisfaction Client</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold text-gold">Multi</div>
@@ -235,8 +235,8 @@ export default function Home() {
                 <span className="text-xl font-bold text-gradient">JuridX</span>
               </div>
               <p className="text-muted-foreground">
-                Cabinet de conseil haut de gamme spécialisé en droit des affaires internationales. 
-                Fondé par Abderrahman Adel.
+                Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales. 
+                Fondé par Abderrahman Adel, expert diplômé de l'Université de Londres.
               </p>
             </div>
             <div>

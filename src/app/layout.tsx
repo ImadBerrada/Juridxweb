@@ -21,14 +21,15 @@ export const metadata: Metadata = {
     default: "JuridX | Cabinet de Conseil Juridique International - Abderrahman Adel",
     template: "%s | JuridX"
   },
-  description: "JuridX - Cabinet de conseil haut de gamme spécialisé en droit des affaires internationales, structuration juridique multi-juridictionnelle, et accompagnement stratégique des entreprises et investisseurs. Fondé par Abderrahman Adel, juriste international diplômé de l'Université de Londres.",
+  description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales, structuration juridique multi-juridictionnelle et accompagnement stratégique personnalisé. Fondé par Abderrahman Adel, expert diplômé de l'Université de Londres.",
   keywords: [
     "JuridX", "Juridx", "juridx", "JURIDX",
     "Abderrahman Adel", "cabinet juridique", "conseil juridique international", 
     "droit des affaires", "structuration juridique", "multi-juridictionnel", 
     "stratégie d'entreprise", "investisseurs", "Londres", "Université de Londres",
     "cabinet conseil juridique", "avocat international", "juriste international",
-    "droit international des affaires", "conseil stratégique", "accompagnement juridique"
+    "droit international des affaires", "conseil stratégique", "accompagnement juridique",
+    "partenaire juridique de confiance", "excellence juridique"
   ],
   authors: [{ name: "Abderrahman Adel", url: "https://juridx.com" }],
   creator: "JuridX - Abderrahman Adel",
@@ -50,16 +51,27 @@ export const metadata: Metadata = {
     icon: [
       {
         url: "/jk.jpg",
-        sizes: "any",
+        sizes: "32x32",
+        type: "image/jpeg",
+      },
+      {
+        url: "/jk.jpg",
+        sizes: "16x16",
         type: "image/jpeg",
       },
     ],
     shortcut: "/jk.jpg",
-    apple: "/jk.jpg",
+    apple: [
+      {
+        url: "/jk.jpg",
+        sizes: "180x180",
+        type: "image/jpeg",
+      },
+    ],
   },
   openGraph: {
-    title: "JuridX | Cabinet de Conseil Juridique International - Abderrahman Adel",
-    description: "JuridX - Cabinet de conseil haut de gamme spécialisé en droit des affaires internationales. Fondé par Abderrahman Adel, juriste international diplômé de l'Université de Londres.",
+    title: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
+    description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales. Expertise reconnue d'Abderrahman Adel, diplômé de l'Université de Londres.",
     url: "https://juridx.com",
     siteName: "JuridX",
     locale: "fr_FR",
@@ -69,14 +81,14 @@ export const metadata: Metadata = {
         url: "/jk.jpg",
         width: 1200,
         height: 630,
-        alt: "JuridX - Cabinet de Conseil Juridique International - Abderrahman Adel",
+        alt: "JuridX - Votre Partenaire Juridique de Confiance - Abderrahman Adel",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "JuridX | Cabinet de Conseil Juridique International - Abderrahman Adel",
-    description: "JuridX - Cabinet de conseil haut de gamme spécialisé en droit des affaires internationales. Fondé par Abderrahman Adel.",
+    title: "JuridX | Votre Partenaire Juridique de Confiance - Abderrahman Adel",
+    description: "JuridX - Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales. Expertise d'Abderrahman Adel.",
     creator: "@juridx",
     site: "@juridx",
     images: ["/jk.jpg"],
@@ -106,10 +118,10 @@ export default function RootLayout({
   return (
     <html lang="fr" className="dark">
       <head>
-        <link rel="icon" href="/jk.jpg" />
+        <link rel="icon" href="/jk.jpg" type="image/jpeg" />
         <link rel="apple-touch-icon" href="/jk.jpg" />
-        <meta property="og:image" content="/jk.jpg" />
-        <meta name="twitter:image" content="/jk.jpg" />
+        <meta property="og:image" content="https://juridx.com/jk.jpg" />
+        <meta name="twitter:image" content="https://juridx.com/jk.jpg" />
         <meta name="theme-color" content="#D4AF37" />
         <link rel="canonical" href="https://juridx.com/" />
         
@@ -122,9 +134,10 @@ export default function RootLayout({
               "@type": "LegalService",
               "name": "JuridX",
               "alternateName": ["Juridx", "JURIDX"],
-              "description": "Cabinet de conseil haut de gamme spécialisé en droit des affaires internationales",
+              "description": "Votre partenaire juridique de confiance. Cabinet d'excellence spécialisé en droit des affaires internationales",
               "url": "https://juridx.com",
               "logo": "https://juridx.com/jk.jpg",
+              "slogan": "Votre partenaire juridique de confiance",
               "founder": {
                 "@type": "Person",
                 "name": "Abderrahman Adel",
